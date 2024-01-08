@@ -168,7 +168,7 @@ class ChordShape():
     
     def findSpelling(self):
         base_notes = [0, 5, 10, 15, 19, 24]
-        self.myNotes = [base_note + coord if coord is not None else None for base_note, coord in zip(base_notes, self.myCoords)]
+        self.myNotes = [base_note + coord - 1 if coord is not 0 else None for base_note, coord in zip(base_notes, self.myCoords)]
         
         spelling = set()
         root_note = self.myNotes[self.myRoot - 1]
@@ -186,7 +186,7 @@ class ChordShape():
         self.myStrings = strings
 
         for i in range(0, len(self.myCoords)):
-            if self.myCoords[i] == None:
+            if self.myCoords[i] == 0:
                 self.myStrings[i] = "x"
 
         diagram = [["|", "|", "|", "|", "|", "|"],
@@ -195,11 +195,11 @@ class ChordShape():
                    ["|", "|", "|", "|", "|", "|"],
                    ["|", "|", "|", "|", "|", "|"]]
 
-        for i in range(1, len(self.myCoords)):
-            if self.myCoords[i] != None:
-                diagram[self.myCoords[i] + 1][i] = self.fret
+        for i in range(0, len(self.myCoords)):
+            if self.myCoords[i] != 0:
+                diagram[self.myCoords[i]][i] = self.fret
 
-        diagram[self.myCoords[self.myRoot - 1] + 1][self.myRoot - 1] = self.r_fret
+        diagram[self.myCoords[self.myRoot - 1]][self.myRoot - 1] = self.r_fret
 
         self.myDiagram = diagram
 
@@ -211,9 +211,9 @@ class ChordShape():
 
 def main():
     shapes = []
-    shapes.append(ChordShape([1, 0, None, 0, 1, 0, None]))
-    shapes.append(ChordShape([2, None, 0, 2, 1, 2, 0]))
-    shapes.append(ChordShape([3, None, None, 0, 1, 1, 1]))
+    shapes.append(ChordShape([1, 1, 0, 1, 2, 1, 0]))
+    shapes.append(ChordShape([2, 0, 1, 3, 3, 3, 1]))
+    shapes.append(ChordShape([3, 0, 0, 1, 2, 2, 2]))
     for shape in shapes:
         shape.printDiagram()
         print()
