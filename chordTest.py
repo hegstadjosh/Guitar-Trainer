@@ -1,79 +1,49 @@
 import g4f
 import pprint
+import sys
+import music_data
+from collections import deque
+
+base_notes = [0, 5, 10, 15, 19, 24] #Standard tuning EADGBE in integer notation
 
 # Define the Chord class and a function to create instances for each chord from the file
 class Chord:
-    chord_map = {'Major 7th': ('1 3 5 7', (1, 5, 8, 12)),
-                'Dominant 7th': ('1 3 5 b7', (1, 5, 8, 11)),
-                'Minor 7th': ('1 b3 5 b7', (1, 4, 8, 11)),
-                'Half-Diminished 7th (m7♭5)': ('1 b3 b5 b7', (1, 4, 7, 11)),
-                'Diminished 7th': ('1 b3 b5 bb7', (1, 4, 7, 10)),
-                'Minor Major 7th': ('1 b3 5 7', (1, 4, 8, 12)),
-                'Augmented Major 7th': ('1 3 #5 7', (1, 5, 9, 12)),
-                'Augmented 7th': ('1 3 #5 b7', (1, 5, 9, 11)),
-                'Major 7 (b5)': ('1 3 b5 7', (1, 5, 7, 12)),
-                'Dominant 7 (b5)': ('1 3 b5 b7', (1, 5, 7, 11)),
-                'Major 6th': ('1 3 5 6', (1, 5, 8, 10)),
-                'Minor 6th': ('1 b3 5 6', (1, 4, 8, 10)),
-                'Dominant 9th': ('1 3 5 b7 9', (1, 5, 8, 11, 3)),
-                'Dominant 11th': ('1 3 5 b7 9 11', (1, 5, 8, 11, 3, 6)),
-                'Dominant 13th': ('1 3 5 b7 9 11 13', (1, 5, 8, 11, 3, 6, 10)),
-                'Major 9th': ('1 3 5 7 9', (1, 5, 8, 12, 3)),
-                'Major 11th': ('1 3 5 7 9 11', (1, 5, 8, 12, 3, 6)),
-                'Major 13th': ('1 3 5 7 9 11 13', (1, 5, 8, 12, 3, 6, 10)),
-                'Minor 9th': ('1 b3 5 b7 9', (1, 4, 8, 11, 3)),
-                'Minor 11th': ('1 b3 5 b7 9 11', (1, 4, 8, 11, 3, 6)),
-                'Minor 13th': ('1 b3 5 b7 9 11 13', (1, 4, 8, 11, 3, 6, 10)),
-                'Minor Major 9': ('1 b3 5 7 9', (1, 4, 8, 12, 3)),
-                'Major 7#11': ('1 3 5 7 #11', (1, 5, 8, 12, 7)),
-                'Major 13#11': ('1 3 5 7 9 #11 13', (1, 5, 8, 12, 3, 7, 10)),
-                'Thirteen Sharp 11': ('1 3 5 b7 9 #11 13', (1, 5, 8, 11, 3, 7, 10)),
-                'Thirteen Flat 9': ('1 3 5 b7 9 b13', (1, 5, 8, 11, 3, 9)),
-                'Seven Flat 9': ('1 3 5 b7 b9', (1, 5, 8, 11, 2)),
-                'Seven Sharp 9': ('1 3 5 b7 #9', (1, 5, 8, 11, 4)),
-                'Sus2': ('1 2 5', (1, 3, 8)),
-                'Sus4': ('1 4 5', (1, 6, 8)),
-                '7sus4': ('1 4 5 b7', (1, 6, 8, 11)),
-                '9sus4': ('1 4 5 b7 9', (1, 6, 8, 11, 3)),
-                'Seven Sus4 Flat9': ('1 4 5 b7 b9', (1, 6, 8, 11, 2)),
-                'Thirteen Sus4': ('1 4 5 b7 9 13', (1, 6, 8, 11, 3, 10)),
-                'Major (no5)': ('1 3', (1, 5)),
-                'Minor (no5)': ('1 b3', (1, 4)),
-                '7 (no5)': ('1 3 b7', (1, 5, 11)),
-                'm7 (no5)': ('1 b3 b7', (1, 4, 11)),
-                'Omit 3 (Power Chord)': ('1 5', (1, 8)),
-                '7 Omit 3': ('1 5 b7', (1, 8, 11)),
-                'Add9': ('1 3 5 9', (1, 5, 8, 3)),
-                'mAdd9': ('1 b3 5 9', (1, 4, 8, 3)),
-                'Add11': ('1 3 5 11', (1, 5, 8, 6)),
-                'mAdd11': ('1 b3 5 11', (1, 4, 8, 6)),
-                'Six Nine': ('1 3 5 6 9', (1, 5, 8, 10, 3)),
-                'Minor Six Add Nine': ('1 b3 5 6 9', (1, 4, 8, 10, 3)),
-                'Minor Seven Add 11': ('1 b3 5 b7 11', (1, 4, 8, 11, 6))}   
+    """
+    Represents a musical chord with standard and integer spellings.
+
+    Attributes:
+        name (str): The name of the chord.
+        standard_spelling (str): The standard notation of the chord.
+        integer_spelling (set of int): The integer representation of the chord.
+    """
+        
     
 
-    def __init__(self, name, standard_spelling, integer_spelling):
+    def __init__(self, name, standard_spelling = "", integer_spelling = []):
+        """
+        Initializes a Chord instance.
+
+        Parameters:
+            name (str): The name of the chord.
+            standard_spelling (str): The standard notation of the chord.
+            integer_spelling (set of int): The integer representation of the chord.
+        """
+        
         self.name = name
-        if standard_spelling is None and integer_spelling is not None:
+        if not standard_spelling and integer_spelling:
             # Convert from integer to standard
-            self.standard_spelling = self.convert_spelling(integer_spelling, 1)
+            self.standard_spelling = music_data.convert_spelling(integer_spelling, 1)
             self.integer_spelling = integer_spelling
-        elif integer_spelling is None and standard_spelling is not None:
+        elif not integer_spelling and standard_spelling:
             # Convert from standard to integer
-            self.integer_spelling = self.convert_spelling(standard_spelling, 0)
+            self.integer_spelling = music_data.convert_spelling(standard_spelling, 0)
             self.standard_spelling = standard_spelling
-        elif standard_spelling is not None and integer_spelling is not None:
+        elif standard_spelling and integer_spelling:
             self.standard_spelling = standard_spelling
             self.integer_spelling = integer_spelling
         else:
             raise ValueError("At least one of standard_spelling or integer_spelling must be provided")
-
-    def get_type(self):
-        return self.type
-
-    def set_type(self, type):
-        self.type = type
-
+    
     def get_name(self):
         return self.name
 
@@ -94,68 +64,59 @@ class Chord:
 
     def __repr__(self):
         return f"Chord(name='{self.name}', standard_spelling='{self.standard_spelling}', integer_spelling='{self.integer_spelling}')"
-    
-    @staticmethod
-    def convert_spelling(spelling, conversion_type):
-        if conversion_type == 0 and type(spelling) != str:
-            spelling = ' '.join(spelling)  # Convert to string
-        elif conversion_type == 1 and type(spelling) != set:
-            spelling = set(spelling)  # Convert to set
 
-        # Check if spelling is a chord name in chord_map
-        for chord_name, spellings in Chord.chord_map.items():
-            if spellings[conversion_type] == spelling:
-                return spellings[conversion_type - 1]  # Return other spelling type
+class ChordGroup():  
+    """
+    A collection of Chord objects initialized from a predefined chord map.
+    """
 
-        # If mapping not found, convert manually (only using flats)
-
-        # Mapping from standard to integer, including double sharps and flats
-        standard_to_integer = {
-            '1': 1, 'b2': 2, '2': 3, '#2': 4, 'x2': 5, 'b3': 4, '3': 5, 'x3': 6, '4': 6, '#4': 7, 'x4': 8,
-            'b5': 7, '5': 8, '#5': 9, 'x5': 10, 'b6': 9, '6': 10, '#6': 11, 'x6': 12, 'bb7': 10, 'b7': 11, '7': 12
-        }
-        # Inverse mapping for integer to standard
-        integer_to_standard = {v: k for k, v in standard_to_integer.items()}
-
-        converted = []
-        if conversion_type == 0:
-            # Convert from standard to integer
-            converted = [standard_to_integer.get(note, note) for note in spelling]
-            converted = ' '.join(converted)  # Convert to string
-        elif conversion_type == 1:
-            # Convert from integer to standard
-            converted = [integer_to_standard.get(note, note) for note in spelling]
-            converted = set(converted)  # Convert to set
-
-        return converted
-
-class ChordGroup():
     chords = []
-    for chord_name, chord_data in Chord.chord_map.items():
+    for chord_name, chord_data in music_data.chord_map.items():
         chord = Chord(chord_name, chord_data[0], chord_data[1])
         chords.append(chord)
 
-class ChordShape():
+class ChordShape(Chord):
+    """
+    Represents the shape of a chord on a guitar fretboard.
+
+    Attributes:
+        coords (list of int): Coordinates on the fretboard.
+        root (int): The root note position.
+        diagram (list): Visual representation of the chord shape.
+        myStrings (list): String representation for the chord diagram.
+        chord (Chord): Associated Chord object.
+    """
+
     def __init__(self, coords):
+        """
+        Initializes a ChordShape instance.
+
+        Parameters:
+            coords (list of int): Coordinates representing the chord shape on the fretboard.
+        """
+
         self.fret = "O"
         self.r_fret = "0"
 
-        self.myCoords = coords[1:]
-        self.myRoot = coords[0]
+        self.root = coords[0]
+        self.coords = coords[1:]
+        self.notes
+        self.spelling
+        self.findSpelling()
+        self.notes_of_shape(coords)
+        self.coords_matrix
 
-        self.myDiagram = None
-        self.myStrings = None
-        self.diagram()              #initializes myDiagram and myStrings
+        self.chord = None
 
-        self.myNotes = None
-        self.myChord = Chord("None", "None", "None")  
-        self.findSpelling()   #Find the chord in list of chords with same spelling as this shape, assign to myChord
+        self.diagram = Diagram(self.coords)
+
+           #Find th  e chord in list of chords with same spelling as this shape, assign to chord
 
     def __repr__(self):
-        return f"ChordShape(name='{self.myChord.name}', standard_spelling='{self.myChord.standard_spelling}', myRoot='{self.myRoot}', myCoords='{self.myCoords}')"
+        return f"ChordShape(name='{self.chord.name}', standard_spelling='{self.chord.standard_spelling}', root='{self.root}', coords='{self.coords}')"
 
     def getCoords(self):
-        return self.myCoords
+        return self.coords
 
     def getName(self):
         return self.myName
@@ -164,60 +125,134 @@ class ChordShape():
         self.myName = name
 
     def getRoot(self):
-        return self.myRoot
+        return self.root
     
+    def notes_of_shape(self):
+        #Find the absolute notes of the shape
+        self.notes = [base_note + coord - 1 if coord != 0 else None for base_note, coord in zip(base_notes, self.coords)]
+        root_note = self.notes[self.root - 1]
+
+
     def findSpelling(self):
-        base_notes = [0, 5, 10, 15, 19, 24]
-        self.myNotes = [base_note + coord - 1 if coord is not 0 else None for base_note, coord in zip(base_notes, self.myCoords)]
-        
         spelling = set()
-        root_note = self.myNotes[self.myRoot - 1]
-        for note in self.myNotes:
+        root_note = self.notes[self.root - 1]
+        for note in self.notes:
             if note is not None:
-                spelling.add((note - root_note) % 12 + 1)
-
-        for chord in ChordGroup.chords:
-            if set(chord.integer_spelling) == spelling:
-                self.myChord = chord
-                break
-
-    def diagram(self):
-        strings = ["|"]*6
-        self.myStrings = strings
-
-        for i in range(0, len(self.myCoords)):
-            if self.myCoords[i] == 0:
-                self.myStrings[i] = "x"
-
-        diagram = [["|", "|", "|", "|", "|", "|"],
-                   ["|", "|", "|", "|", "|", "|"],
-                   ["|", "|", "|", "|", "|", "|"],
-                   ["|", "|", "|", "|", "|", "|"],
-                   ["|", "|", "|", "|", "|", "|"]]
-
-        for i in range(0, len(self.myCoords)):
-            if self.myCoords[i] != 0:
-                diagram[self.myCoords[i]][i] = self.fret
-
-        diagram[self.myCoords[self.myRoot - 1]][self.myRoot - 1] = self.r_fret
-
-        self.myDiagram = diagram
+                spelling.add((note - root_note) % 12)
+        self.spelling = spelling
+        self.match_chord()
+    
+    def coords_to_2D(self):
+        min_fret = min(coord - 1 for coord in self.coords if coord != 0)
+        max_fret = max(coord - 1 for coord in self.coords if coord != 0)
+        twoD_coords = [[None for _ in range(6)] for _ in range(max_fret - min_fret + 1)]
+        
+    def match_chord(self):
+        if self.chord is None:
+            for chord in ChordGroup.chords:
+                if set(chord.integer_spelling) == spelling:
+                    self.chord = chord
+                    return
+            
+        self.chord = Chord("None", music_data.convert_spelling(spelling, 1), spelling) #TODO how to name chord?
 
     def printDiagram(self):
-        print(" ".join(self.myStrings))
-
-        for innerArray in self.myDiagram:
+        for innerArray in self.diagram:
             print(" ".join(innerArray))
 
+class Scale():
+    def __init__(self, name, integer_spelling):
+        self.integer_spelling = integer_spelling
+        self.coords = Scale.create_coords(integer_spelling)
+        self.diagrams = Scale.create_diagrams(integer_spelling)
+        self.notes = []
+        self.chords = []
+
+    @staticmethod
+    def create_coords(integer_spelling):
+        r_height = 1
+        coords = []
+        for root in range(0, 5):
+            root_note = (base_notes[root] + r_height) % 12
+            queue = deque([(n + root_note) % 12 for n in integer_spelling].sort())
+
+            for string in range(0, 6): 
+                first_fret = 0
+                count = 0
+                scale_note = scale_note if scale_note is not None else queue.popleft()
+                for fret in range(0, 5): 
+                    fret_distance = fret - first_fret
+                    fret_note = (base_notes[string] + fret) % 12
+                    if fret_note == scale_note and fret_distance < 4:
+                        if count == 0:
+                            first_fret = fret
+                        count += 1
+
+                        coords[root][fret][string] = scale_note - root_note if scale_note >= root_note else scale_note - root_note + 12 #put the integer scale tone in the right place
+                        queue.append(scale_note)
+                        scale_note = queue.popleft()
+
+        return coords
+
+    def create_diagrams(integer_spelling):
+        coords = Scale.create_coords(integer_spelling)
+
+        diagrams = []
+        for i in range(0, len(coords)):
+            diagrams.append(Diagram(coords[i]))
+        
+        return diagrams
+            
+
+class Diagram: #TODO
+    def __init__(self, root, coords):
+        self.root = root
+        self.coords = coords
+        min_fret = None
+        max_fret = None
+
+        num_frets = max(5, max_fret - min_fret)
+
+    for i in range(0, len(self.coords)):
+        if self.coords[i] != 0:
+            self.coords[i] = self.coords[i] - min_fret + 1
+        
+    
+    diagram = [["|", "|", "|", "|", "|", "|"] for _ in range(num_frets + 2)]
+    diagram[1].append(" " + str(min_fret))
+
+    for i in range(0, len(self.coords)):
+        if self.coords[i] != 0:
+            diagram[self.coords[i]][i] = self.fret
+        else:
+            diagram[0][i] = "x"
+
+    diagram[self.coords[self.root - 1]][self.root - 1] = self.r_fret
+
 def main():
-    shapes = []
-    shapes.append(ChordShape([1, 1, 0, 1, 2, 1, 0]))
-    shapes.append(ChordShape([2, 0, 1, 3, 3, 3, 1]))
-    shapes.append(ChordShape([3, 0, 0, 1, 2, 2, 2]))
-    for shape in shapes:
+    penta = Scale("Pentatonic", (1, 3, 5, 8, 10))
+    print(penta.coords)
+
+main()
+def displayChord():
+    """
+    Interactive loop for displaying chord shapes based on user input.
+    """
+
+    while True:
+        user_input = input("Enter command (q to quit): ")
+        if user_input == 'q':
+            break
+
+        if not user_input.isdigit():
+            print("Invalid input. Please enter 7-digit numbers.")
+            continue
+
+        coordinates = [int(digit) for digit in user_input]  
+
+        shape = ChordShape(coordinates)
         shape.printDiagram()
         print()
         print(shape)
         print()
 
-main()
