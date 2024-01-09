@@ -146,15 +146,15 @@ class ChordShape(Chord):
         min_fret = min(coord - 1 for coord in self.coords if coord != 0)
         max_fret = max(coord - 1 for coord in self.coords if coord != 0)
         twoD_coords = [[None for _ in range(6)] for _ in range(max_fret - min_fret + 1)]
-        
+
     def match_chord(self):
         if self.chord is None:
             for chord in ChordGroup.chords:
-                if set(chord.integer_spelling) == spelling:
+                if set(chord.integer_spelling) == self.spelling:
                     self.chord = chord
                     return
             
-        self.chord = Chord("None", music_data.convert_spelling(spelling, 1), spelling) #TODO how to name chord?
+        self.chord = Chord("None", music_data.convert_spelling(self.spelling, 1), self.spelling) #TODO how to name chord?
 
     def printDiagram(self):
         for innerArray in self.diagram:
@@ -202,36 +202,53 @@ class Scale():
             diagrams.append(Diagram(coords[i]))
         
         return diagrams
+    
+    def print_diagram(self, number = 0):
+        self.diagrams[number].print_diagram()
             
 
 class Diagram: #TODO
     def __init__(self, root, coords):
         self.root = root
         self.coords = coords
-        min_fret = None
-        max_fret = None
+        self.num_frets = len(coords)
+        self.diagram = [["|" for _ in range(6)] for _ in range(self.num_frets + 2)]
+        self.ordered_notes 
 
-        num_frets = max(5, max_fret - min_fret)
-
-    for i in range(0, len(self.coords)):
-        if self.coords[i] != 0:
-            self.coords[i] = self.coords[i] - min_fret + 1
+        def find_ordered_notes(self):
+            notes = deque()
+            for i in range(0, len(self.coords)):
+                for j in range(0, len(self.coords[i])):
+                    if self.coords[i][j] is not None:
+                        notes.append(self.coords[i][j])
+            self.ordered_notes = notes
         
-    
-    diagram = [["|", "|", "|", "|", "|", "|"] for _ in range(num_frets + 2)]
-    diagram[1].append(" " + str(min_fret))
+        def print_diagram(self, type):
+            for i in range(0, len(self.diagram[0])):
+                if all(coord is None for coord in self.coords[:, i]):
+                    self.diagram[0][i] = 'x'
+            for i in range(1, len(self.diagram) - 1):
+                for j in range(0, len(self.diagram[i])):
+                    if self.coords[i][j] is not None: 
+                        self.diagram[i][j] = convert_fret(self.coords[i][j], type)
 
-    for i in range(0, len(self.coords)):
-        if self.coords[i] != 0:
-            diagram[self.coords[i]][i] = self.fret
-        else:
-            diagram[0][i] = "x"
+            max_width = max(len(element) for row in self.diagram for element in row)
+            for row in self.diagram:
+                print(" ".join(element.ljust(max_width) for element in row))
 
-    diagram[self.coords[self.root - 1]][self.root - 1] = self.r_fret
+        def convert_fret(self, note, tones = -1, real_notes = ''):
+            if tones == 1: 
+                return note
+            if tones == 2:
+                return music_data.integer_to_tones(note)
+            if any(real_notes in row for row in music_data.note_values):
+                return music_data.note_values[note][0]
+            return '0' if note == 0 else 'O'
 
 def main():
     penta = Scale("Pentatonic", (1, 3, 5, 8, 10))
     print(penta.coords)
+    Scale.print_diagram(0)
 
 main()
 def displayChord():

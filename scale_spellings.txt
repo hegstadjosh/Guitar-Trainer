@@ -1,0 +1,532 @@
+4095   ;CdDeEFgGaAbB   Chromatic
+2773   ;C D EF G A B   Major
+2906   ;C De F Ga b    Natural Minor
+2777   ;C D EF Ga  B   Harmonic Major
+2905   ;C De F Ga  B   Harmonic Minor
+2901   ;C De F G A B   Melodic Minor (Ascend)
+2730   ;C D E g a b    Whole Tone
+2708   ;C D E  G A     Pentatonic Major
+2386   ;C  e F G  b    Pentatonic Minor
+2642   ;C D  F G  b    Pentatonic Neutral
+2964   ;C DeE  G A     Blues Major
+2418   ;C  e FgG  b    Blues Minor
+2925   ;C De Fg aA B   Diminished
+2774   ;C D EF G Ab    Dominant 7th
+2902   ;C De F G Ab    Dorian
+2741   ;C D E gG A B   Lydian
+3434   ;Cd e Fg a b    Locrian
+3418   ;Cd e F Ga b    Phrygian
+2906   ;C De F Ga b    Aeolian
+2477   ;C  eE g aA B   Aeolian Flat 1
+2937   ;C De FgGa  B   Algerian
+3156   ;Cd   F G A     Altered Pentatonic
+3456   ;Cd eE          Alternate TetraMirror
+2925   ;C De Fg aA B   Arabian 1
+2794   ;C D EFg a b    Arabian 2
+2909   ;C De F GaA B   Arabian Zirafkend
+2473   ;C  eE g a  B   Augmented
+2184   ;C   E   a      Augmented Chord
+3352   ;Cd e   Ga      Balinese
+3248   ;Cd  E gG       Balinese Pentatonic
+3799   ;CdD EF G AbB   Bebop Chromatic
+2775   ;C D EF G AbB   Bebop Dominant
+3449   ;Cd e FgGa  B   Bebop Half-Diminished
+2781   ;C D EF GaA B   Bebop Major
+2780   ;C D EF GaA     Bebop Major Heptatonic
+2716   ;C D E  GaA     Bebop Major Hexatonic
+3030   ;C DeEF G Ab    Bebop Minor
+2966   ;C DeE  G Ab    Bebop Minor Heptatonic
+3285   ;Cd  EF G A B   Bhairubahar Thaat
+2964   ;C DeE  G A     Blues Major
+2418   ;C  e FgG  b    Blues Minor
+3510   ;Cd eE gG Ab    Blues Diminished
+3476   ;Cd eE  G A     Blues Dorian Hexatonic
+3062   ;C DeEFgG Ab    Blues Enneatonic
+2422   ;C  e FgG Ab    Blues Heptatonic
+2419   ;C  e FgG  bB   Blues Leading Tone
+2417   ;C  e FgG   B   Blues Minor Maj7
+2930   ;C De FgG  b    Blues Modified
+2934   ;C De FgG Ab    Blues Octatonic
+3872   ;CdDe  g        Blues Pentacluster
+3442   ;Cd e FgG  b    Blues Phrygian
+2401   ;C  e Fg    B   Blues V
+3289   ;Cd  EF Ga  B   Byzantine
+2504   ;C  eEF  a      Centered PentaMirror
+2634   ;C D  F  a b    Chaio
+2225   ;C   E gG   B   Chinese
+2322   ;C  e   G  b    Chinese Bi Yu
+2708   ;C D E  G A     Chinese Mongolian
+3830   ;CdD EFgG Ab    Chinese Youlan
+2510   ;C  eEF  aAb    Chrom. Hypodorian Inv.
+3305   ;Cd  EFg a  B   Chrom. Hypolydian Inv.
+4092   ;CdDeEFgGaA     Chromatic DecaMirror
+4064   ;CdDeEFg        Chromatic HeptaMirror
+4032   ;CdDeEF         Chromatic HexaMirror
+2972   ;C DeE  GaA     Chromatic Hypodorian
+3257   ;Cd  E gGa  B   Chromatic Hypolydian
+4088   ;CdDeEFgGa      Chromatic NonaMirror
+4080   ;CdDeEFgG       Chromatic OctaMirror
+3968   ;CdDeE          Chromatic PentaMirror
+3840   ;CdDe           Chromatic TetraMirror
+3584   ;CdD            Chromatic TriMirror
+4094   ;CdDeEFgGaAb    Chromatic UndecaMirror
+2708   ;C D E  G A     Diatonic
+3934   ;CdDe F GaAb    Diatonic Dorian Chrom.
+3805   ;CdD EF GaA B   Diatonic Dorian Perm.
+2340   ;C  e  g  A     Diminished 7th Chord
+2336   ;C  e  g        Diminished Chord
+3498   ;Cd eE g a b    Diminished Whole Tone
+2706   ;C D E  G  b    Dominant Pentatonic
+2902   ;C De F G Ab    Dorian
+2910   ;C De F GaAb    Dorian Aeolian
+2918   ;C De Fg  Ab    Dorian b5
+3676   ;CdD  F GaA     Dorian Chromatic
+2515   ;C  eEF G  bB   Dorian Chromatic Inv.
+2836   ;C De   G A     Dorian Pentatonic
+2880   ;C De F         Dorian Tetrachord
+3290   ;Cd  EF Ga b    Dorico Flamenco
+3289   ;Cd  EF Ga  B   Double Harmonic
+2642   ;C D  F G  b    Egyptian
+3307   ;Cd  EFg a bB   Enigmatic
+3243   ;Cd  E g a bB   Enigmatic Ascending
+3275   ;Cd  EF  a bB   Enigmatic Descending
+3371   ;Cd e  g a bB   Enigmatic Minor
+2729   ;C D E g a  B   Eskimo Hexatonic 1
+2732   ;C D E g aA     Eskimo Hexatonic 2
+2704   ;C D E  G       Eskimo Tetratonic
+2773   ;C D EF G A B   Ethiopian 1
+2777   ;C D EF Ga  B   Ethiopian 2
+2906   ;C De F Ga b    Ethiopian 3
+3546   ;Cd eEF Ga b    Flamenco
+2911   ;C De F GaAbB   Full Minor all flats
+3549   ;Cd eEF GaA B   Genus Chromaticum
+2130   ;C    F G  b    Genus Primum Inverse
+2261   ;C   EF G A B   Genus Secundum
+2870   ;C De  gG Ab    Gnossiennes
+3038   ;C DeEF GaAb    Greek Houseini
+2517   ;C  eEF G A B   Greek Houzam
+2942   ;C De FgGaAb    Greek Kiourdi
+3387   ;Cd e  gGa bB   Greek Neveseri
+2970   ;C DeE  Ga b    Greek Sabach
+3182   ;Cd   Fg aAb    Gypsy Hexatonic 1
+3292   ;Cd  EF GaA     Gypsy Hexatonic 2
+3434   ;Cd e Fg a b    Half Diminished
+2922   ;C De Fg a b    Half Diminished 2
+2777   ;C D EF Ga  B   Harmonic Major
+2905   ;C De F Ga  B   Harmonic Minor
+2765   ;C D EF  aA B   Harmonic Major 2
+3286   ;Cd  EF G Ab    Harmonic Minor Inv.
+2848   ;C De  g        Harm. Min. Tetrachord
+3929   ;CdDe F Ga  B   Harm. Neapolitan Minor
+2837   ;C De   G A B   Hawaiian 1
+2901   ;C De F G A B   Hawaiian 2
+2733   ;C D E g aA B   Hindi IV & V
+2742   ;C D E gG Ab    Hindi IV & bVII
+2778   ;C D EF Ga b    Hindu
+3426   ;Cd e Fg   b    Honchoshi Plagal Form
+3289   ;Cd  EF Ga  B   Hungarian Folk
+2874   ;C De  gGa b    Hungarian Gypsy
+2486   ;C  eE gG Ab    Hungarian Major
+2873   ;C De  gGa  B   Hungarian Minor
+3897   ;CdDe  gGa  B   Hungarian Minor b2
+3700   ;CdD  FgG A     Hypophrygian Inv.
+2773   ;C D EF G A B   Ionian
+2765   ;C D EF  aA B   Ionian 5
+2257   ;C   EF G   B   Ionian Pentatonic
+2648   ;C D  F Ga      Japanese Han-Kumoi
+2840   ;C De   Ga      Japanese Hirajoshi
+2805   ;C D EFgG A B   Japanese Ichikosucho
+3170   ;Cd   Fg   b    Japanese Iwato
+3154   ;Cd   F G  b    Japanese Kokin-Joshi
+2836   ;C De   G A     Japanese Kumoi
+2669   ;C D  Fg aA B   Japanese Nohkan
+3376   ;Cd e  gG       Japanese Pentachord
+2644   ;C D  F G A     Japanese Ritusen
+3160   ;Cd   F Ga      Japanese Sakura
+2114   ;C    F    b    Japanese Sanagari
+2807   ;C D EFgG AbB   Japanese Taishikicho
+3414   ;Cd e F G Ab    Javanese
+3414   ;Cd e F G Ab    Jazz Minor Inverse
+3926   ;CdDe F G Ab    Jewish Adonai Malakh
+3290   ;Cd  EF Ga b    Jewish Ahaba Rabba
+2724   ;C D E g  A     Kung
+2731   ;C D E g a bB   Leading Whole Tone
+3434   ;Cd e Fg a b    Locrian
+2921   ;C De Fg a  B   Locrian 2
+3436   ;Cd e Fg aA     Locrian bb7
+3430   ;Cd e Fg  Ab    Locrian Natural Maj 6
+3424   ;Cd e Fg        Locrian PentaMirror
+2741   ;C D E gG A B   Lydian
+2485   ;C  eE gG A B   Lydian 2
+2453   ;C  eE  G A B   Lydian 2 Hexatonic
+2733   ;C D E g aA B   Lydian Augmented
+3301   ;Cd  EFg  A B   Lydian Chromatic
+3385   ;Cd e  gGa  B   Lydian Chromatic Inv.
+2869   ;C De  gG A B   Lydian Diminished
+2742   ;C D E gG Ab    Lydian Dominant
+2709   ;C D E  G A B   Lydian Hexatonic
+2746   ;C D E gGa b    Lydian Minor
+2807   ;C D EFgG AbB   Lydian Mixolydian
+2736   ;C D E gG       Lydian Pentachord
+3499   ;Cd eE g a bB   Magen Abot 1
+3501   ;Cd eE g aA B   Magen Abot 2
+3039   ;C DeEF GaAbB   Major & Minor mixed
+2372   ;C  e F   A     Major b7 Chord
+2596   ;C D   g  A     Major b7 Chord 2
+2344   ;C  e  g a      Major Dominant b7
+2794   ;C D EFg a b    Major Locrian
+2805   ;C D EFgG A B   Major Lydian
+2778   ;C D EF Ga b    Major Minor
+2768   ;C D EF G       Major Pentachord
+2752   ;C D EF         Major Tetrachord
+3291   ;Cd  EF Ga bB   Maqam Hijaz
+3558   ;Cd eEFg  Ab    Maqam Shadd'araban
+3386   ;Cd e  gGa b    Mela Bhavapriya
+3286   ;Cd  EF G Ab    Mela Chakravakam
+2515   ;C  eEF G  bB   Mela Chalanata
+2778   ;C D EF Ga b    Mela Charukesi
+2739   ;C D E gG  bB   Mela Citrambari
+2869   ;C De  gG A B   Mela Dharmavati
+2489   ;C  eE gGa  B   Mela Dhatuvardhani
+3260   ;Cd  E gGaA     Mela Dhavalambari
+3417   ;Cd e F Ga  B   Mela Dhenuka
+2773   ;C D EF G A B   Mela Dhirasankara
+3379   ;Cd e  gG  bB   Mela Divamani
+3253   ;Cd  E gG A B   Mela Gamanasrama
+3673   ;CdD  F Ga  B   Mela Ganamurti
+2521   ;C  eEF Ga  B   Mela Gangeyabhusani
+2901   ;C De F G A B   Mela Gaurimanohari
+3388   ;Cd e  gGaA     Mela Gavambohdi
+3292   ;Cd  EF GaA     Mela Gayakapriya
+3418   ;Cd e F Ga b    Mela Hanumattodi
+2774   ;C D EF G Ab    Mela Harikambhoji
+3283   ;Cd  EF G  bB   Mela Hatakambari
+2870   ;C De  gG Ab    Mela Hemavati
+3642   ;CdD   gGa b    Mela Jalarnavam
+3641   ;CdD   gGa  B   Mela Jhalavarali
+2908   ;C De F GaA     Mela Jhankaradhvani
+2490   ;C  eE gGa b    Mela Jhotisvarupini
+3257   ;Cd  E gGa  B   Mela Kamavardhani
+3676   ;CdD  F GaA     Mela Kanakangi
+2748   ;C D E gGaA     Mela Kantamani
+2902   ;C De F G Ab    Mela Kharaharapriya
+2905   ;C De F Ga  B   Mela Kiravani
+3413   ;Cd e F G A B   Mela Kokilapriya
+2485   ;C  eE gG A B   Mela Kosalam
+2745   ;C D E gGa  B   Mela Latangi
+3669   ;CdD  F G A B   Mela Manavati
+2780   ;C D EF GaA     Mela Mararanjani
+2741   ;C D E gG A B   Mela Mechakalyani
+2771   ;C D EF G  bB   Mela Nagananadini
+3258   ;Cd  E gGa b    Mela Namanarayani
+2906   ;C De F Ga b    Mela Natabhairavi
+3414   ;Cd e F G Ab    Mela Natakapriya
+3638   ;CdD   gG Ab    Mela Navanitam
+2867   ;C De  gG  bB   Mela Nitimati
+3637   ;CdD   gG A B   Mela Pavani
+2522   ;C  eEF Ga b    Mela Ragavardhani
+3635   ;CdD   gG  bB   Mela Raghupriya
+3254   ;Cd  E gG Ab    Mela Ramapriya
+2483   ;C  eE gG  bB   Mela Rasikapriya
+3674   ;CdD  F Ga b    Mela Ratnangi
+2746   ;C D E gGa b    Mela Risabhapriya
+3411   ;Cd e F G  bB   Mela Rupavati
+3382   ;Cd e  gG Ab    Mela Sadvidhamargini
+3644   ;CdD   gGaA     Mela Salaga
+2874   ;C De  gGa b    Mela Sanmukhapriya
+2777   ;C D EF Ga  B   Mela Sarasangi
+3420   ;Cd e F GaA     Mela Senavati
+2873   ;C De  gGa  B   Mela Simhendramadhyama
+3385   ;Cd e  gGa  B   Mela Subhapantuvarali
+2492   ;C  eE gGaA     Mela Sucharitra
+2517   ;C  eEF G A B   Mela Sulini
+3285   ;Cd  EF G A B   Mela Suryakantam
+2876   ;C De  gGaA     Mela Syamalangi
+3667   ;CdD  F G  bB   Mela Tanarupi
+2518   ;C  eEF G Ab    Mela Vagadhisvari
+3670   ;CdD  F G Ab    Mela Vanaspati
+2899   ;C De F G  bB   Mela Varunapriya
+2742   ;C D E gG Ab    Mela Vaschaspati
+3251   ;Cd  E gG  bB   Mela Visvambhari
+2524   ;C  eEF GaA     Mela Yagapriya
+2923   ;C De Fg a bB   Messiaen 2 Brown
+2925   ;C De Fg aA B   Messiaen 2 Groves
+2340   ;C  e  g  A     Messiaen 2nd Mode
+3445   ;Cd e FgG A B   Messiaen 3 Brown
+2184   ;C   E   a      Messiaen 3rd Mode
+3640   ;CdD   gGa      Messiaen 5th Groves
+2145   ;C    Fg    B   Messiaen Mode 2-1
+2405   ;C  e Fg  A B   Messiaen Mode 2-2
+2665   ;C D  Fg a  B   Messiaen Mode 2-3
+3120   ;Cd    gG       Messiaen Mode 2-4
+3822   ;CdD EFg aAb    Messiaen Mode 3
+3003   ;C DeE gGa bB   Messiaen Mode 3 Inv.
+3705   ;CdD  FgGa  B   Messiaen Mode 4-1
+3900   ;CdDe  gGaA     Messiaen Mode 4-2
+2535   ;C  eEFg  AbB   Messiaen Mode 4 Inv.
+3185   ;Cd   FgG   B   Messiaen Mode 5
+2275   ;C   EFg   bB   Messiaen Mode 5 Inv
+2775   ;C D EF G AbB   Messiaen Mode 6-1
+3770   ;CdD E gGa b    Messiaen Mode 6-2
+2795   ;C D EFg a bB   Messiaen Mode 6 Inv.
+3965   ;CdDe FgGaA B   Messiaen Mode 7-1
+4030   ;CdDeE gGaAb    Messiaen Mode 7-2
+3055   ;C DeEFg aAbB   Messiaen Mode 7 Inv.
+2210   ;C   E g   b    Messiaen Trunc 6 Inv.
+2600   ;C D   g a      Messiaen Trunc. Mode 6
+2338   ;C  e  g   b    Messiaen Truncated
+3380   ;Cd e  gG A     Messiaen Truncated 2
+3276   ;Cd  EF  aA     Messiaen Truncated 3
+2388   ;C  e F G A     Minor 6th Added
+2898   ;C De F G  b    Minor Hexatonic
+2922   ;C De Fg a b    Minor Locrian
+2896   ;C De F G       Minor Pentachord
+3063   ;C DeEFgG AbB   Minor Pentatonic Lead
+2816   ;C De           Minor Trichord
+2774   ;C D EF G Ab    Mixolydian
+2766   ;C D EF  aAb    Mixolydian Augmented
+2790   ;C D EFg  Ab    Mixolydian b5
+3698   ;CdD  FgG  b    Mixolydian Chromatic 1
+3762   ;CdD E gG  b    Mixolydian Chromatic 2
+2675   ;C D  FgG  bB   Mixolydian Chrom. Inv.
+2646   ;C D  F G Ab    Mixolydian Hexatonic
+2258   ;C   EF G  b    Mixolydian Pentatonic
+2905   ;C De F Ga  B   Mohammedan
+3547   ;Cd eEF Ga bB   Moorish Phrygian
+3413   ;Cd e F G A B   Neapolitan Major
+3417   ;Cd e F Ga  B   Neapolitan Minor
+3756   ;CdD E g aA     Neapolitan Minor 2
+3418   ;Cd e F Ga b    Neopolitan Minor 2
+3005   ;C DeE gGaA B   Nine Tone
+3542   ;Cd eEF G Ab    Octatonic JG
+3302   ;Cd  EFg  Ab    Oriental 1
+3303   ;Cd  EFg  AbB   Oriental 2
+3306   ;Cd  EFg a b    Oriental 3
+3680   ;CdD  Fg        Oriental Pentacluster
+2742   ;C D E gG Ab    Overtone
+2745   ;C D E gGa  B   Pelog
+3352   ;Cd e   Ga      Pelog 1
+3346   ;Cd e   G  b    Pelog 2
+3305   ;Cd  EFg a  B   Persian
+3418   ;Cd e F Ga b    Phrygian
+3930   ;CdDe F Ga b    Phrygian Aeolian
+2507   ;C  eEF  a bB   Phrygian Chromatic
+3740   ;CdD E  GaA     Phrygian Chrom. Inv.
+3290   ;Cd  EF Ga b    Phrygian Dominant
+3428   ;Cd e Fg  A     Phrygian Double Hex.
+2394   ;C  e F Ga b    Phrygian Hexatonic
+3450   ;Cd e FgGa b    Phrygian Locrian
+3546   ;Cd eEF Ga b    Phrygian Major
+3392   ;Cd e F         Phrygian Tetrachord
+3328   ;Cd e           Phrygian Trichord
+3435   ;Cd e Fg a bB   Prokofiev
+2726   ;C D E g  Ab    Prometheus
+3238   ;Cd  E g  Ab    Prometheus Neapolitan
+3430   ;Cd e Fg  Ab    Pseudo Turkish
+2916   ;C De Fg  A     Pyramid Hexatonic
+2884   ;C De F   A     Raga Abhogi
+2865   ;C De  gG   B   Raga Amarasenapriya
+2888   ;C De F  a      Raga Audva Tukhari
+2886   ;C De F   Ab    Raga Bagesri
+3225   ;Cd  E  Ga  B   Raga Bauli
+2514   ;C  eEF G  b    Raga Bhanumanjari
+3317   ;Cd  EFgG A B   Raga Bhatiyar
+3370   ;Cd e  g a b    Raga Bhavani
+2649   ;C D  F Ga  B   Raga Bhinna Pancama
+2245   ;C   EF   A B   Raga Bhinna Shadja
+2712   ;C D E  Ga      Raga Bhupeshwari
+2180   ;C   E    A     Raga Bilwadala
+2737   ;C D E gG   B   Raga Caturangini
+2377   ;C  e F  a  B   Raga Chand. Kiravani
+3636   ;CdD   gG A     Raga Chandrajyoti
+2373   ;C  e F   A B   Raga Chandrakauns
+2374   ;C  e F   Ab    Raga Chandrakauns Kafi
+3368   ;Cd e  g a      Raga Chhaya Todi
+3400   ;Cd e F  a      Raga Chitthakarshini
+2878   ;C De  gGaAb    Raga Cintamani
+2641   ;C D  F G   B   Raga Desh
+3097   ;Cd     Ga  B   Raga Deshgaur
+2137   ;C    F Ga  B   Raga Devaranjani
+3256   ;Cd  E gGa      Raga Dhavalangam
+2228   ;C   E gG A     Raga Dhavalashri
+2800   ;C D EFgG       Raga Dipak
+2257   ;C   EF G   B   Raga Gambhiranata
+3410   ;Cd e F G  b    Raga Gandharavam
+3281   ;Cd  EF G   B   Raga Gaula
+3153   ;Cd   F G   B   Raga Gauri
+2889   ;C De F  a  B   Raga Ghantana
+2630   ;C D  F   Ab    Raga Guhamanohari
+3369   ;Cd e  g a  B   Raga Gujari Todi
+2757   ;C D EF   A B   Raga Hamsa Vinodini
+2705   ;C D E  G   B   Raga Hamsadhvani
+3237   ;Cd  E g  A B   Raga Hamsanandi
+2346   ;C  e  g a b    Raga Harikauns
+2632   ;C D  F  a      Raga Haripriya
+3244   ;Cd  E g aA     Raga Hejjajji
+2213   ;C   E g  A B   Raga Hindol
+3250   ;Cd  E gG  b    Raga Indupriya
+2618   ;C D   gGa b    Raga Jaganmohanam
+2402   ;C  e Fg   b    Raga Jayakauns
+3157   ;Cd   F G A B   Raga Jivantika
+2355   ;C  e  gG  bB   Raga Jivantini
+2234   ;C   E gGa b    Raga Jyoti
+3226   ;Cd  E  Ga b    Raga Kalagada
+3164   ;Cd   F GaA     Raga Kalakanthi
+3182   ;Cd   Fg aAb    Raga Kalakanti
+3284   ;Cd  EF G A     Raga Kalavati
+2266   ;C   EF Ga b    Raga Kamalamanohari
+3354   ;Cd e   Ga b    Raga Kashyapi
+2246   ;C   EF   Ab    Raga Khamaji Durga
+2262   ;C   EF G Ab    Raga Khamas
+2392   ;C  e F Ga      Raga Kokil Pancham
+3145   ;Cd   F  a  B   Raga Kshanika
+2485   ;C  eE gG A B   Raga Kuksumakaram
+3593   ;CdD     a  B   Raga Kumarapriya
+2721   ;C D E g    B   Raga Kumurdaki
+2713   ;C D E  Ga  B   Raga Latika
+3144   ;Cd   F  a      Raga Lavangi
+2358   ;C  e  gG Ab    Raga Madhakauns
+2263   ;C   EF G AbB   Raga Madhuri
+2194   ;C   E  G  b    Raga Mahathi
+3288   ;Cd  EF Ga      Raga Malahari
+2611   ;C D   gG  bB   Raga Malarani
+2225   ;C   E gG   B   Raga Malashri
+3222   ;Cd  E  G Ab    Raga Malayamarutam
+2378   ;C  e F  a b    Raga Malkauns
+2197   ;C   E  G A B   Raga Mamata
+3218   ;Cd  E  G  b    Raga Manaranjani
+2838   ;C De   G Ab    Raga Manavi
+2260   ;C   EF G A     Raga Mand
+3249   ;Cd  E gG   B   Raga Mandari
+2390   ;C  e F G Ab    Raga Manohari
+2582   ;C D    G Ab    Raga Matha Kokila
+2643   ;C D  F G  bB   Raga Megh
+3272   ;Cd  EF  a      Raga Megharanjani
+3265   ;Cd  EF     B   Raga Megharanji
+2903   ;C De F G AbB   Raga Mian Ki Malhar
+2452   ;C  eE  G A     Raga Mohanangi
+2725   ;C D E g  A B   Raga Mrunganandana
+2353   ;C  e  gG   B   Raga Multani
+3632   ;CdD   gG       Raga Nabhomani
+2645   ;C D  F G A B   Raga Nagagandhari
+2769   ;C D EF G   B   Raga Nalinakanti
+2518   ;C  eEF G Ab    Raga Nandkauns
+2486   ;C  eE gG Ab    Raga Nasamani
+2385   ;C  e F G   B   Raga Nata
+2758   ;C D EF   Ab    Raga Nattaikurinji
+2650   ;C D  F Ga b    Raga Navamanohari
+2860   ;C De  g aA     Raga Neelangi
+2209   ;C   E g    B   Raga Nigamagamini
+2613   ;C D   gG A B   Raga Nishadi
+2096   ;C     gG       Raga Ongkari
+3161   ;Cd   F Ga  B   Raga Padi
+2783   ;C D EF GaAbB   Raga Pahadi
+2265   ;C   EF Ga  B   Raga Paraju
+3162   ;Cd   F Ga b    Raga Phenadyuti
+2633   ;C D  F  a  B   Raga Priyadharshini
+2133   ;C    F G A B   Raga Puruhutika
+3596   ;CdD     aA     Raga Putrika
+2759   ;C D EF   AbB   Raga Ragesri
+3031   ;C DeEF G AbB   Raga Ramdasi Malhar
+3321   ;Cd  EFgGa  B   Raga Ramkali
+2853   ;C De  g  A B   Raga Ranjani
+2481   ;C  eE gG   B   Raga Rasamanjari
+3158   ;Cd   F G Ab    Raga Rasavali
+2629   ;C D  F   A B   Raga Rasranjani
+2746   ;C D E gGa b    Raga Ratipriya
+3224   ;Cd  E  Ga      Raga Reva
+3270   ;Cd  EF   Ab    Raga Rudra Pancama
+3346   ;Cd e   G  b    Raga Rukmangi
+2517   ;C  eEF G A B   Raga Saildesakshi
+3350   ;Cd e   G Ab    Raga Salagavarali
+2354   ;C  e  gG  b    Raga Samudhra Priya
+2761   ;C D EF  a  B   Raga Sarasanana
+2614   ;C D   gG Ab    Raga Sarasvati
+2268   ;C   EF GaA     Raga Saravati
+2128   ;C    F G       Raga Sarvarsi
+3128   ;Cd    gGa      Raga Saugandhini
+3293   ;Cd  EF GaA B   Raga Saurashtra
+2330   ;C  e   Ga b    Raga Shailaja
+2612   ;C D   gG A     Raga Shri Kalyan
+2597   ;C D   g  A B   Raga Shubravarni
+3416   ;Cd e F Ga      Raga Simantini
+2866   ;C De  gG  b    Raga Simharava
+2897   ;C De F G   B   Raga Sindhura Kafi
+4059   ;CdDeEF Ga bB   Raga Sindi Bhairavi
+2770   ;C D EF G  b    Raga Siva Kambhoji
+3273   ;Cd  EF  a  B   Raga Sohini
+2647   ;C D  F G AbB   Raga Sorati
+2900   ;C De F G A     Raga Suddha Bangala
+3660   ;CdD  F  aA     Raga Suddha Mukhari
+2593   ;C D   g    B   Raga Sumukam
+2872   ;C De  gGa      Raga Syamalam
+2393   ;C  e F Ga  B   Raga Takka
+2259   ;C   EF G  bB   Raga Tilang
+2842   ;C De   Ga b    Raga Trimurti
+2609   ;C D   gG   B   Raga Vaijayanti
+2198   ;C   E  G Ab    Raga Valaji
+3269   ;Cd  EF   A B   Raga Vasanta
+3274   ;Cd  EF  a b    Raga Vasantabhairavi
+2868   ;C De  gG A     Raga Vijayanagari
+3633   ;CdD   gG   B   Raga Vijayasri
+2227   ;C   E gG  bB   Raga Vijayavasanta
+3401   ;Cd e F  a  B   Raga Viyogavarali
+2230   ;C   E gG Ab    Raga Vutari
+2740   ;C D E gG A     Raga Yamuna Kalyani
+2264   ;C   EF Ga      Raga Zilaf
+3402   ;Cd e F  a b    Ritsu
+2518   ;C  eEF G Ab    Rock 'n Roll
+2249   ;C   EF  a  B   Romanian Bacovia
+3254   ;Cd  E gG Ab    Romanian Major
+2870   ;C De  gG Ab    Roumanian Minor
+2772   ;C D EF G A     Scottish Hexatonic
+2644   ;C D  F G A     Scottish Pentatonic
+3509   ;Cd eE gG A B   Shostakovich
+3276   ;Cd  EF  aA     Six Tone Symmetrical
+3562   ;Cd eEFg a b    Spanish 8 tone
+3290   ;Cd  EF Ga b    Spanish Gypsy
+2538   ;C  eEFg a b    Spanish Heptatonic
+3520   ;Cd eEF         Spanish Pentacluster
+3498   ;Cd eE g a b    Super Locrian
+3835   ;CdD EFgGa bB   Symmetrical Decatonic
+3771   ;CdD E gGa bB   Symmetrical Nonatonic
+2857   ;C De  g a  B   Takemitsu Tree Line 1
+2858   ;C De  g a b    Takemitsu Tree Line 2
+2906   ;C De F Ga b    Theta Asavari
+3289   ;Cd  EF Ga  B   Theta Bhairav
+3418   ;Cd e F Ga b    Theta Bhairavi
+2773   ;C D EF G A B   Theta Bilaval
+2902   ;C De F G Ab    Theta Kafi
+2741   ;C D E gG A B   Theta Kalyan
+2774   ;C D EF G Ab    Theta Khamaj
+3253   ;Cd  E gG A B   Theta Marva
+3257   ;Cd  E gGa  B   Theta Purvi
+3385   ;Cd e  gGa  B   Theta Todi
+3382   ;Cd e  gG Ab    Todi bVII
+3500   ;Cd eE g aA     Ultra Locrian
+2306   ;C  e      b    Ute Tritone
+2907   ;C De F Ga bB   Utility Minor
+2818   ;C De      b    Warao Minor Trichord
+2720   ;C D E g        Whole-Tone Tetramirror
+2192   ;C   E  G       Chord Major
+2320   ;C  e   G       Chord minor
+2194   ;C   E  G  b    Chord 7th
+2193   ;C   E  G   B   Chord M7
+2322   ;C  e   G  b    Chord m7
+2180   ;C   E   a      Chord aug (+5)
+2336   ;C  e  g        Chord dim
+2064   ;C      G       Chord 5th (power)
+2208   ;C   E g        Chord -5 (b5)
+2196   ;C   E  G A     Chord M6
+2185   ;C   E   a  B   Chord M7+5
+2704   ;C D E  G       Chord 2
+2324   ;C  e   G A     Chord m6
+2321   ;C  e   G   B   Chord mM7
+2340   ;C  e  g  A     Chord dim7
+2338   ;C  e  g   b    Chord m7-5
+2210   ;C   E g   b    Chord 7-5
+2186   ;C   E   a b    Chord 7+5
+2198   ;C   E  G Ab    Chord 7/6
+2592   ;C D   g        Chord sus2
+2128   ;C    F G       Chord sus4
+2130   ;C    F G  b    Chord 7sus4
