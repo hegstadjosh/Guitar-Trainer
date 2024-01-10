@@ -1,4 +1,7 @@
 import pprint
+import requests
+from bs4 import BeautifulSoup
+
 def create_chord_dictionary_from_file(file_path):
     chord_dict = {}
     with open(file_path, 'r') as file:
@@ -53,9 +56,31 @@ def decimal_to_scale_tones(decimal_number):
 
     return tuple(scale_tones)
 
-# Use this to read your file
-with open('scale_spellings.txt', 'r') as file:
-    scale_lines = file.readlines()
+@staticmethod
+def scrape_chord_shapes(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
 
-scales_dict = process_scale_lines(scale_lines)
-pprint.pprint(scales_dict)
+    chord_shapes = []
+
+    # Find all links to text files
+    for link in soup.find_all('a'):
+        href = link.get('href')
+        if href and href.endswith('.txt'):
+            txt_url = url + href  # Construct the full URL
+            txt_response = requests.get(txt_url)
+            
+            # Process the text file content into ChordShape objects
+            chord_shape = process_chord_shape(txt_response.text)
+            chord_shapes.append(chord_shape)
+
+    return chord_shapes
+
+def process_chord_shape(txt_content):
+    # Process the text content and return a ChordShape object
+    # This will depend on the specific format of the text files
+    pass
+
+# Example usage
+url = 'https://www.hakwright.co.uk/guitarchords/A_chords.html'
+chord_shapes = scrape_chord_shapes(url)
