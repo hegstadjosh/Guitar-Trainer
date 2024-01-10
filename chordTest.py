@@ -6,6 +6,50 @@ from collections import deque
 
 base_notes = [0, 5, 10, 15, 19, 24] #Standard tuning EADGBE in integer notation
 
+def main():
+    random_scale = list(music_data.scale_map)[random.randint(0, len(music_data.scale_map) - 1)]
+    random_scale = Scale(random_scale, music_data.scale_map[random_scale])
+
+    print(str(random_scale) + ": ")
+
+    print("Diagram 1: " )
+    random_scale.print_diagram(0, 0), print()
+    print("Diagram 2: " )
+    random_scale.print_diagram(0, 1), print()
+    print("Diagram 3: " )
+    random_scale.print_diagram(0, 2), print()
+    print("Diagram 4: " )
+    random_scale.print_diagram(0, 'A'), print()
+
+    print("-------------------------------------------------------------")
+    chord1 = ChordShape([1, 1, 3, 3, 2, 1])
+    chord1.printDiagram()
+    print(chord1.chord), print()
+
+    display_user_chords()
+
+def display_user_chords():
+    """
+    Interactive loop for displaying chord shapes based on user input.
+    """
+
+    while True:
+        user_input = input("Enter 7-digit chord coordinates (q to quit) \nfirst digit is the root string, rest are fret numbers:")
+        if user_input == 'q':
+            break
+
+        if not user_input.isdigit():
+            print("Invalid input. Please enter 7-digit numbers.")
+            continue
+
+        coordinates = [int(digit) for digit in user_input]  
+
+        shape = ChordShape(coordinates)
+        shape.printDiagram()
+        print()
+        print(shape)
+        print("-------------------------------------------------------------")
+
 # Define the Chord class and a function to create instances for each chord from the file
 class Chord:
     """
@@ -249,50 +293,9 @@ class Diagram: #TODO
             return music_data.note_values[(index + note) % 12][0]
         return '0' if note == 0 else 'O'
 
-def main():
-    chord1 = ChordShape([1, 1, 3, 3, 2, 1])
-    print(chord1.chord)
-    chord1.printDiagram()
-
-    random_scale = list(music_data.scale_map)[random.randint(0, len(music_data.scale_map) - 1)]
-    random_scale = Scale(random_scale, music_data.scale_map[random_scale])
-
-    print(str(random_scale) + ": ")
-
-    print("Diagram 1: " )
-    random_scale.print_diagram(0, 0)
-    print("Diagram 2: " )
-    random_scale.print_diagram(0, 1)
-    print("Diagram 3: " )
-    random_scale.print_diagram(0, 2)
-    print("Diagram 4: " )
-    random_scale.print_diagram(0, 'A')
-
 
 all_chords = []
 for chord_name, chord_data in music_data.chord_map.items():
     chord = Chord(chord_name, chord_data[0], chord_data[1])
     all_chords.append(chord)
 main()
-def displayChord():
-    """
-    Interactive loop for displaying chord shapes based on user input.
-    """
-
-    while True:
-        user_input = input("Enter command (q to quit): ")
-        if user_input == 'q':
-            break
-
-        if not user_input.isdigit():
-            print("Invalid input. Please enter 7-digit numbers.")
-            continue
-
-        coordinates = [int(digit) for digit in user_input]  
-
-        shape = ChordShape(coordinates)
-        shape.printDiagram()
-        print()
-        print(shape)
-        print()
-
