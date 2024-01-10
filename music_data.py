@@ -39,7 +39,7 @@ def convert_spelling(spelling, conversion_type):
         spelling = set(spelling)  # Convert to set
 
     # Check if spelling is a chord name in chord_map
-    for chord_name, spellings in music_data.chord_map.items():
+    for chord_name, spellings in chord_map.items():
         if spellings[conversion_type] == spelling:
             return spellings[conversion_type - 1]  # Return other spelling type
 
@@ -48,16 +48,19 @@ def convert_spelling(spelling, conversion_type):
     converted = []
     if conversion_type == 0:
         # Convert from standard to integer
-        converted = [standard_to_integer.get(note, note) for note in spelling]
+        converted = [tones_to_integer.get(note, note) for note in spelling]
         converted = ' '.join(converted)  # Convert to string
     elif conversion_type == 1:
         # Convert from integer to standard
-        converted = [integer_to_standard.get(note, note) for note in spelling]
+        converted = [integer_to_tones.get(note, note) for note in spelling]
         converted = set(converted)  # Convert to set
 
     return converted
 
-chord_map = {'Major 7th': ('0 2 4 6', (0, 4, 7, 11)),
+#Source: https://www.brendanpauljacobs.com/spelling.htm
+#       ,ChatGPT
+chord_map = {
+            'Major 7th': ('0 2 4 6', (0, 4, 7, 11)),
             'Dominant 7th': ('0 2 4 b7', (0, 4, 7, 10)),
             'Minor 7th': ('0 b3 4 b7', (0, 3, 7, 10)),
             'Half-Diminished 7th (m7♭4)': ('0 b3 b5 b7', (0, 3, 6, 10)),
@@ -103,8 +106,48 @@ chord_map = {'Major 7th': ('0 2 4 6', (0, 4, 7, 11)),
             'mAdd11': ('0 b3 4 10', (0, 3, 7, 5)),
             'Six Nine': ('0 2 4 5 8', (0, 4, 7, 9, 2)),
             'Minor Six Add Nine': ('0 b3 4 5 8', (0, 3, 7, 9, 2)),
-            'Minor Seven Add 10': ('0 b3 4 b7 10', (0, 3, 7, 10, 5))}   
+            'Minor Seven Add 10': ('0 b3 4 b7 10', (0, 3, 7, 10, 5)),
+            'Major 7#5': ('0 2 #4 6', (0, 4, 8, 11)),
+            'Major 7b5': ('0 2 b5 6', (0, 4, 6, 11)),
+            'Minor 7#5': ('0 b3 #4 b7', (0, 3, 8, 10)),
+            'Minor 7b5': ('0 b3 b5 b7', (0, 3, 6, 10)),
+            'Diminished Major 7th': ('0 b3 b5 6', (0, 3, 6, 11)),
 
+            'Major': ('0 2 4', (0, 4, 7)),
+            'Minor': ('0 b3 4', (0, 3, 7)),
+            'Diminished': ('0 b3 b5', (0, 3, 6)),
+            'Augmented': ('0 2 #4', (0, 4, 8)),
+
+            'Dominant 7#5': ('0 2 #4 b7', (0, 4, 8, 10)),
+            'Dominant 7b5': ('0 2 b5 b7', (0, 4, 6, 10)),
+            'Dominant 7#9': ('0 2 4 b7 #8', (0, 4, 7, 10, 3)),
+            'Dominant 7b9': ('0 2 4 b7 b8', (0, 4, 7, 10, 1)),
+            'Dominant 7#11': ('0 2 4 b7 10', (0, 4, 7, 10, 6)),
+            'Dominant 7b13': ('0 2 4 b7 12', (0, 4, 7, 10, 8)),
+            'Major 9#5': ('0 2 #4 6 8', (0, 4, 8, 11, 2)),
+            'Major 9b5': ('0 2 b5 6 8', (0, 4, 6, 11, 2)),
+            'Minor 9#5': ('0 b3 #4 b7 8', (0, 3, 8, 10, 2)),
+            'Minor 9b5': ('0 b3 b5 b7 8', (0, 3, 6, 10, 2)),
+            'Dominant 9#5': ('0 2 #4 b7 8', (0, 4, 8, 10, 2)),
+            'Dominant 9b5': ('0 2 b5 b7 8', (0, 4, 6, 10, 2)),
+            'Altered Dominant': ('0 b2 #2 3 b5 b6 b7', (0, 1, 3, 5, 6, 8, 10)),
+            'Lydian Dominant 7th': ('0 2 4 #6 b7', (0, 4, 7, 9, 10)),
+            'Phrygian Dominant 7th': ('0 b2 4 5 b7', (0, 1, 7, 9, 10)),
+            'Minor 11b5': ('0 b3 b5 b7 8 10', (0, 3, 6, 10, 2, 5)),
+            'Minor 13b5': ('0 b3 b5 b7 8 10 12', (0, 3, 6, 10, 2, 5, 9)),
+            'Dominant 13#11': ('0 2 4 b7 8 10 12', (0, 4, 7, 10, 2, 6, 9)),
+            'Major 6/9': ('0 2 4 5 8', (0, 4, 7, 9, 2)),
+            'Minor 6/9': ('0 b3 4 5 8', (0, 3, 7, 9, 2)),
+            'Major 7#9': ('0 2 4 6 #8', (0, 4, 7, 11, 3)),
+            'Major 7b9': ('0 2 4 6 b8', (0, 4, 7, 11, 1)),
+            'Dominant 7#5#9': ('0 2 #4 b7 #8', (0, 4, 8, 10, 3)),
+            'Dominant 7#5b9': ('0 2 #4 b7 b8', (0, 4, 8, 10, 1)),
+            'Dominant 7b5#9': ('0 2 b5 b7 #8', (0, 4, 6, 10, 3)),
+            'Dominant 7b5b9': ('0 2 b5 b7 b8', (0, 4, 6, 10, 1)),
+            'Locrian #2': ('0 2 b3 b5 b6 b7', (0, 2, 3, 6, 8, 10))
+           }
+
+#Source: https://www.daqarta.com/dw_ss0a.htm
 scale_map = {'Aeolian': (0, 2, 3, 5, 7, 8, 10),
  'Aeolian Flat 0': (0, 3, 4, 6, 8, 9, 11),
  'Algerian': (0, 2, 3, 5, 6, 7, 8, 11),
