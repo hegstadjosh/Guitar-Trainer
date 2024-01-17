@@ -9,7 +9,7 @@ However, you have to know
 So scales and chords can be represented by 'integer spellings', or the integer
 (0-11) values that make them up. 
 
-Major 7th Chord: 0, 4, 7, 11
+Major Chord: 0, 4, 7
 Major Scale:     0, 2, 4, 5, 7, 9, 11
 
 And the open (unfretted) strings on a guitar correspond to 7, 12, 17, 22, 26, 31 
