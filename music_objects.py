@@ -3,61 +3,18 @@ import sys
 import random
 import music_data
 from collections import deque
+import sqlite3
 
 """
 File Name: music_objects.py
 Description: This file contains classes and functions for representing musical scales and chords, 
-             generating diagrams for these scales and chords on a guitar fretboard.
-Author: Josh Hegstad
-Date: 01/09/2024
-Version: 1.1
+             and generating diagrams for them on a guitar fretboard.
+Author: Joshua Hegstad
+Date: 01/17/2024
+Version: 1.2
 """
 
-base_notes1 = [0, 5, 10, 15, 19, 24] #Standard tuning EADGBE in integer notation
-base_notes =  [7, 12, 17, 22, 26, 31] #Standard tuning EADGBE in integer notation
-def main():
-    random_scale = list(music_data.scale_map)[random.randint(0, len(music_data.scale_map) - 1)]
-    random_scale = Scale(random_scale, music_data.scale_map[random_scale])
-
-    print(str(random_scale) + ": ")
-
-    print("Diagram 1: " )
-    random_scale.print_diagram(0, 0), print()
-    print("Diagram 2: " )
-    random_scale.print_diagram(0, 1), print()
-    print("Diagram 3: " )
-    random_scale.print_diagram(0, 2), print()
-    print("Diagram 4: " )
-    random_scale.print_diagram(0, 'A'), print()
-
-    print("-------------------------------------------------------------")
-    chord1 = ChordShape([1, 1, 3, 3, 2, 1])
-    chord1.printDiagram()
-    print(chord1.chord), print()
-
-    display_user_chords()
-
-def display_user_chords():
-    """
-    Interactive loop for displaying chord shapes based on user input.
-    """
-
-    while True:
-        user_input = input("Enter 7-digit chord coordinates (q to quit) \nfirst digit is the root string, rest are fret numbers:")
-        if user_input == 'q':
-            break
-
-        if not user_input.isdigit():
-            print("Invalid input. Please enter 7-digit numbers.")
-            continue
-
-        coordinates = [int(digit) for digit in user_input]  
-
-        shape = ChordShape(coordinates)
-        shape.printDiagram()
-        print()
-        print(shape)
-        print("-------------------------------------------------------------")
+base_notes =  [7, 12, 17, 22, 26, 31] #Standard tuning EADGBE in integer notation (A = 0, G# = 11)
 
 # Define the Chord class and a function to create instances for each chord from the file
 class Chord:
@@ -72,7 +29,7 @@ class Chord:
         
     
 
-    def __init__(self, name, standard_spelling = "", integer_spelling = []):
+    def __init__(self, name = None, standard_spelling = None, integer_spelling = None):
         """
         Initializes a Chord instance.
 
@@ -81,10 +38,16 @@ class Chord:
             standard_spelling (str): The standard notation of the chord.
             integer_spelling (set of int): The integer representation of the chord.
         """
-        
         self.name = name
+        self.integer_spelling = integer_spelling
+        self.standard_spelling = standard_spelling
         if not standard_spelling and integer_spelling:
             # Convert from integer to standard
+            if isinstance(integer_spelling, str):
+                integer_spelling = tuple(sorted(map(int, integer_spelling.split())))
+            else:
+                integer_spelling = tuple(sorted(integer_spelling))
+                
             self.standard_spelling = music_data.convert_spelling(integer_spelling, 1)
             self.integer_spelling = integer_spelling
         elif not integer_spelling and standard_spelling:
@@ -94,9 +57,16 @@ class Chord:
         elif standard_spelling and integer_spelling:
             self.standard_spelling = standard_spelling
             self.integer_spelling = integer_spelling
+        elif name and name in music_data.chord_map:
+            self.standard_spelling = music_data.chord_map[name][0]
+            self.integer_spelling = music_data.chord_map[name][1]
         else:
             raise ValueError("At least one of standard_spelling or integer_spelling must be provided")
-    
+        
+        if not name and integer_spelling in music_data.chord_map_invert:
+            self.name = music_data.chord_map_invert[self.integer_spelling][0]
+
+        
     def get_name(self):
         return self.name
 
@@ -119,6 +89,7 @@ class Chord:
         return f"Chord(name='{self.name}', standard_spelling='{self.standard_spelling}', integer_spelling='{self.integer_spelling}')"
 
 class ChordShape(Chord):
+    empty_chord = [0, 0, 0, 0, 0, 0, 0]
     """
     Represents the shape of a chord on a guitar fretboard.
 
@@ -131,11 +102,11 @@ class ChordShape(Chord):
 
     Methods:
         __init__: Initializes a ChordShape instance.
-        notes_of_shape: Finds the absolute notes of the shape.
-        findSpelling: Determines the spelling of the chord.
+        find_notes: Finds the absolute notes of the shape.
+        find_spelling: Determines the spelling of the chord.
         coords_to_2D: Converts coordinates to a 2D matrix.
         match_chord: Matches the chord shape to a chord from the chord list.
-        printDiagram: Prints the diagram of the chord shape.
+        print_diagram: Prints the diagram of the chord shape.
 
     """
 
@@ -150,45 +121,16 @@ class ChordShape(Chord):
         self.fret = "O"
         self.r_fret = "0"
 
-        self.coords = None
-        self.root = None
-
-        if(type(coords) is list and len(coords) < 6):
-            return
-        
-        if type(coords) is not list:
-            if type(coords) is int and len(str(coords)) <= 7:
-                self.coords = coords = [int(digit) for digit in str(coords)]
-            else:
-                return
-    
-        #Find the root based on given note (integer value)
-        if(note is not None):
-            if not (type(note) is int and 0 <= note < 12):
-                raise ValueError("Note must be an int in the range [0, 12)")
-
-            start = 0 if len(coords) == 6 else 1
-        
-            for i in range(start, len(coords)):
-                if coords[i] != 0 and (coords[i] + base_notes[i - start] - 1) % 12 == note:
-                    self.root = i + 1 - start
-                    break
-            
-            self.coords = coords[start:]
-        #if no root or note given, find the root based on the first non-zero coordinate
-        elif len(coords) == 6:
-            self.root = next((i + 1 for i, coord in enumerate(coords) if coord != 0), None)
-        #standard input: 7 digits long list, 1st digit is root string, rest are fret numbers
-        else:
-            self.root = coords[0]
-            self.coords = coords[1:]
+        coords = ChordShape.process_coords(coords, note)
+        self.coords = coords[1:]
+        self.root = coords[0]
         
         self.notes = None
         self.spelling = None
         self.chord = None
         self.coords_matrix = None
-        self.notes_of_shape()
-        self.findSpelling()
+        self.find_notes()
+        self.find_spelling()
         self.coords_to_2D()
         self.diagram = Diagram(self.coords_matrix)
 
@@ -210,12 +152,66 @@ class ChordShape(Chord):
     def getRoot(self):
         return self.root
     
-    def notes_of_shape(self):
+    def process_coords(coords, note = None):
+        """
+        Returns correctly formatted guitar fret coordinates in the following format: 
+        [root string # (1-6), String 1 fret # (1- ), String 2, 3, 4, 5, 6]
+        0 represents an unplayed string. 
+
+        This method takes a list of coordinates or a string or integer representation of coordinates,
+        validates the input, and returns a list of coordinates with the root note added if not given.
+        If a note (integer value between 0 and 11) is provided, the method finds the root based on the given note.
+
+        Parameters:
+        coords (list or str or int): The input coordinates.
+        note (int, optional): The note to find the root based on. Defaults to None.
+
+        Returns:
+        list: The processed coordinates.
+        """
+        
+        #Convert to list if not already
+        if type(coords) is not list:
+            if type(coords) is str and coords.isdigit():
+                coords = int(coords)
+            if type(coords) is int:
+                coords = [int(digit) for digit in str(coords)]
+            else:
+                return ChordShape.empty_chord
+            
+        #Check if valid input
+        if(7 < len(coords) < 6 or (len(coords) == 7 and 6 < coords[0] < 1)):
+            return ChordShape.empty_chord
+
+        #Add 0 for root note if not given
+        if len(coords) == 6:
+            coords = [0] + coords
+
+        #Find the root based on given note (integer value) TODO
+        if(note is not None and type(note) is int and 0 <= note < 12):
+            for i in range(1, len(coords)):
+                if coords[i] != 0 and (coords[i] + base_notes[i - 1] - 1) % 12 == note:
+                    coords[0] = i
+                    break
+            
+            if coords[0] == 0:
+                return ChordShape.empty_chord
+        #if no root or note given, find the root based on the first non-zero coordinate TODO
+        if coords[0] == 0:
+            coords[0] = next((i for i, coord in enumerate(coords) if coord != 0), None)
+        #standard input: 7 digits long list, 1st digit is root string, rest are fret numbers
+        return coords
+
+    def find_notes(self):
         #Find the absolute notes of the shape
         self.notes = [(base_note + coord - 1) % 12 if coord != 0 else None for base_note, coord in zip(base_notes, self.coords)]
 
-    def findSpelling(self): #TODO
+    def find_spelling(self): #TODO
         spelling = set()
+        if self.root == 0:
+            self.spelling = spelling
+            return
+        
         root_note = self.notes[self.root - 1] % 12
         for note in self.notes:
             if note is not None:
@@ -228,7 +224,7 @@ class ChordShape(Chord):
         max_fret = max(coord - 1 for coord in self.coords if coord != 0)
         self.coords_matrix = [[None for _ in range(6)] for _ in range(max_fret - min_fret + 1)]
         for i in range(len(self.coords)):
-            if self.coords[i] != 0:  # assuming coords values can be 0, adjust if not applicable
+            if self.coords[i] != 0:  
                 self.coords_matrix[self.coords[i] - min_fret - 1][i] = self.notes[i]
                 self.coords[i] = self.coords[i] - min_fret
         
@@ -241,7 +237,7 @@ class ChordShape(Chord):
             
         self.chord = Chord("None", music_data.convert_spelling(self.spelling, 1), self.spelling) #TODO how to name chord?
 
-    def printDiagram(self, type = 0):
+    def print_diagram(self, type = 0):
         self.diagram.print_diagram(type)
 
 class Scale():
@@ -264,13 +260,27 @@ class Scale():
         print_diagram: Prints a specific diagram of the scale.
     """
 
-    def __init__(self, name = "", integer_spelling: int = []):
+    def __init__(self, name = None, integer_spelling = None):
         self.name = name
         self.integer_spelling = integer_spelling
-        self.coords = Scale.create_coords(integer_spelling)
-        self.diagrams = Scale.create_diagrams(integer_spelling)
+        if not name and tuple(integer_spelling) in music_data.scale_map_invert:
+            self.name = music_data.scale_map_invert[tuple(self.integer_spelling)]
+        if not integer_spelling and name in music_data.scale_map:
+            self.integer_spelling = list(music_data.scale_map[name.strip()])
+
+        '''
+        self.coords has been changed from a 3d array generated by create_coords to a
+        2d array (create_coords2). Thus self.diagram instead of self.diagrams and 
+        print_diagram instead of print_diagrams. 
+        '''
+        self.coords = self.diagram = None
+        if(self.integer_spelling is not None):
+            self.coords = Scale.create_coords2(self.integer_spelling)
+            self.diagram = Diagram(self.coords)
+        #self.diagrams = Scale.create_diagrams(self.integer_spelling)
         self.notes = []
         self.chords = []
+
 
     def __repr__(self):
         return f"Scale(name={self.name}, integer_spelling={self.integer_spelling})"
@@ -279,28 +289,76 @@ class Scale():
     def create_coords(integer_spelling):
         r_height = 1
         coords = [[[None for _ in range(6)] for _ in range(5)] for _ in range(5)]
-        for root in range(0, 5):
+        for root in range(5):
             root_note = (base_notes[root] + r_height) % 12
+            print("root note" + str(root) + ": " + str(root_note))
             queue = deque(sorted([(n + root_note) % 12 for n in integer_spelling]))
-
+            print("queue: ")
+            pprint.pprint(queue)
+            
             scale_note = None
-            for string in range(0, 6):
+            for string in range(6):
                 first_fret = 0
                 count = 0
-                scale_note = queue.popleft() if scale_note is None else scale_note
+
+                if string == 0: 
+                    scale_note = Scale.find_first(scale_note, queue, root_note, root)
+
+                print("String " + str(string) + " scale_note: " + str(scale_note))
                 for fret in range(0, 5): 
                     fret_distance = fret - first_fret
                     fret_note = (base_notes[string] + fret) % 12
                     if fret_note == scale_note and fret_distance < 4:
                         if count == 0:
                             first_fret = fret
-                        count += 1
+                        count += 1  
 
-                        coords[root][fret][string] = scale_note - root_note if scale_note >= root_note else scale_note - root_note + 12 #put the integer scale tone in the right place
+                        coords[root][fret][string] = (scale_note - root_note) % 12 #put the integer scale tone in the right place
                         queue.append(scale_note)
                         scale_note = queue.popleft()
 
         return coords
+    
+    @staticmethod
+    def create_coords2(integer_spelling):
+        num_frets = 16
+        coords = [[None for _ in range(6)] for _ in range(num_frets)]
+        base_notes2 = [note - 7 for note in base_notes]
+        queue = deque(integer_spelling)
+        curr_note = queue.popleft()
+        for string in range(6):
+            min_diff = min([(note - base_notes2[string]) % 12 for note in integer_spelling])
+            while (curr_note - base_notes2[string]) % 12 != min_diff:
+                queue.append(curr_note)
+                curr_note = queue.popleft()
+            for fret in range(num_frets):
+                fret_note = (base_notes2[string] + fret) % 12
+                if curr_note == fret_note:
+                    coords[fret][string] = curr_note
+                    queue.append(curr_note)
+                    curr_note = queue.popleft()
+
+        return coords
+
+
+            
+
+    def find_first(scale_note: int, queue: deque, root_note: int, root: int):
+        first_note = root_note - 1 #root_height
+        for i in range(root, -1):
+            first_note = first_note - base_notes[i]
+        first_note = first_note % 12
+
+        print("first note: " + str(first_note))
+
+        nearest_note = min([scale_note for scale_note in queue if scale_note >= first_note], default=None)
+        print("nearest note: " + str(nearest_note))
+        while scale_note != nearest_note:
+            scale_note = queue.popleft()
+            queue.append(scale_note)
+        
+        print("scale note: " + str(scale_note))
+        return scale_note
 
     def create_diagrams(integer_spelling):
         coords = Scale.create_coords(integer_spelling)
@@ -311,9 +369,19 @@ class Scale():
         
         return diagrams
     
-    def print_diagram(self, number = 0, type = 0):
+    def print_diagram(self, type = 0):
+        self.diagram.print_diagram(type)
+        
+    def print_diagrams(self, number = 0, type = 0):
         self.diagrams[number].print_diagram(type)
 
+    def print_vertical(self, type = 0):
+        for diagram in self.diagrams:
+            diagram.print_diagram(type, True)
+    
+    def print_horizontal(self, type = 0):
+        for i in range(5):
+            print()
 
 class Diagram: #TODO
     """
@@ -350,7 +418,9 @@ class Diagram: #TODO
                     notes.append(self.coords[i][j])
         self.ordered_notes = notes
         
-    def print_diagram(self, type = 0):
+    def print_diagram(self, type = 0, top_fret = None):
+        fret_numbers = (0, 3, 5, 7, 9, 12, 15, 17, 19, 21, 24)
+
         for i in range(0, len(self.coords[0])):
             column = [row[i] for row in self.coords]
             if all(coord is None for coord in column):
@@ -360,10 +430,14 @@ class Diagram: #TODO
                 if self.coords[i][j] is not None:
                     self.diagram[i + 1][j] = self.convert_fret(self.coords[i][j], type)
 
+        if top_fret is not None:
+            self.diagram = self.diagram[1:]
         max_width = max(len(str(element)) for row in self.diagram for element in row)
-        for row in self.diagram:
-            #print(' '.join(map(str, row)))
-            print(" ".join(str(element).ljust(max_width) for element in row))
+        for i in range(len(self.diagram)):
+            row = self.diagram[i]
+            row_num = str(i - 1) if i - 1 in fret_numbers else ""
+            print(" ".join(str(element).ljust(max_width) for element in row) + " " + row_num)
+
 
     def convert_fret(self, note, type):
         if type == 1:
@@ -380,5 +454,3 @@ all_chords = []
 for chord_name, chord_data in music_data.chord_map.items():
     chord = Chord(chord_name, chord_data[0], chord_data[1])
     all_chords.append(chord)
-
-main()

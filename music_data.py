@@ -1,4 +1,15 @@
 # Mapping from standard to integer, including double sharps and flats
+import pprint
+
+'''
+File to store music data (scales, chords, note values...).
+Contains a convert_spelling method to convert between standard and integer spellings.
+ChordShape data stored in the chord_coordinates.txt file, not yet used.
+
+Data parsed using methods in the data_collection.py file.
+Sources given in comments above chord_map and scale_map.
+'''
+
 tones_to_integer = {
     '1': 0, 'b2': 1, '2': 2, '#2': 3, 'x2': 4, 'b3': 3, '3': 4, 'x3': 5, '4': 5, '#4': 6, 'x4': 7,
     'b5': 6, '5': 7, '#5': 8, 'x5': 9, 'b6': 8, '6': 9, '#6': 10, 'x6': 11, 'bb7': 9, 'b7': 10, '7': 11
@@ -57,6 +68,7 @@ def convert_spelling(spelling, conversion_type):
 
     return converted
 
+#Dictionary of chord names and their spellings in standard and integer notation.
 #Source: https://www.brendanpauljacobs.com/spelling.htm
 #       ,ChatGPT
 chord_map = {
@@ -107,6 +119,9 @@ chord_map = {
     'Minor': (('1 b3 5'), (0, 3, 7))
 }
 
+chord_map_invert = {v[1]: (k, v[0]) for k, v in chord_map.items()}
+
+#Dictionary of scale names and their spellings in integer notation. 
 #Source: https://www.daqarta.com/dw_ss0a.htm
 scale_map = {'Aeolian': (0, 2, 3, 5, 7, 8, 10),
  'Aeolian Flat 0': (0, 3, 4, 6, 8, 9, 11),
@@ -632,3 +647,9 @@ scale_map = {'Aeolian': (0, 2, 3, 5, 7, 8, 10),
  'Warao Minor Trichord': (0, 2, 3, 10),
  'Whole Tone': (0, 2, 4, 6, 8, 10),
  'Whole-Tone Tetramirror': (0, 2, 4, 6)}
+
+scale_map_invert = {v: k for k, v in scale_map.items()}
+
+# pprint.pprint(chord_map_invert)
+# print()
+# pprint.pprint(scale_map_invert)
