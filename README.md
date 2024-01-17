@@ -29,4 +29,4 @@ ex: '1101110' corresponds to the diagram:
 -| x | | | x
 -O | O O O |
 -| | | | | |
-'''
+
