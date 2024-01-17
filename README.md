@@ -25,8 +25,3 @@ tones_to_integer = {
 For this program, 'fretboard coordinates' are 7-digits. The first is the string with the root on it 
 (1-6), the rest are fret numbers (1-) or 0 if the string is not played.
 
-ex: '1101110' corresponds to the diagram: 
--| x | | | x
--O | O O O |
--| | | | | |
-
