@@ -1,11 +1,11 @@
 To understand this repo you don't really need to know music theory.
 However, you have to know
-  There are generally 12 notes in music (A-G#)
-  Scales are sets of unique notes
-  Chords are sets of not-necessarily unique notes
-  A guitar has 6 strings with note values of E,A,D,G,B,E (standard tuning)
-    Each fret on a guitar (notches along the string's length) increases the 
-    played string's note by one tone or half-step
+- There are generally 12 notes in music (A-G#)
+- Scales are sets of unique notes
+- Chords are sets of not-necessarily unique notes
+- A guitar has 6 strings with note values of E,A,D,G,B,E (standard tuning)
+    *Each fret on a guitar (notches along the string's length) increases the 
+    *played string's note by one tone or half-step
 
 So scales and chords can be represented by 'integer spellings', or the integer
 (0-11) values that make them up. 
