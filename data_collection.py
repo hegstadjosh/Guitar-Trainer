@@ -1,6 +1,14 @@
+import os
 import pprint
 import requests
 from bs4 import BeautifulSoup
+from music_objects import Chord, ChordShape, Scale
+from urllib.parse import urljoin
+
+'''
+Archive of funcitons I made to collect and/or format data from different sources. The 
+formatted data is now in the music_data.py file or text files. 
+'''
 
 def create_chord_dictionary_from_file(file_path):
     chord_dict = {}
@@ -58,29 +66,41 @@ def decimal_to_scale_tones(decimal_number):
 
 @staticmethod
 def scrape_chord_shapes(url):
+    print("scraping url...\t", url)
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    chord_shapes = []
+    with open('chord_shapes.txt', 'w') as file:
+        # Find all links to text files
+        count = 0
+        for link in soup.find_all('a'):
+                
+                    href = link.get('href')
+                    if href and href.endswith('.txt'):
+                        txt_url = urljoin(url, href)  # Construct the full URL
+                        filename = os.path.basename(txt_url)  # Get the filename
+                        filename_without_ext = os.path.splitext(filename)[0]  # Remove the .txt extension
+                        print(filename_without_ext + ":\n")
 
-    # Find all links to text files
-    for link in soup.find_all('a'):
-        href = link.get('href')
-        if href and href.endswith('.txt'):
-            txt_url = url + href  # Construct the full URL
-            txt_response = requests.get(txt_url)
-            
-            # Process the text file content into ChordShape objects
-            chord_shape = process_chord_shape(txt_response.text)
-            chord_shapes.append(chord_shape)
+                        txt_response = requests.get(txt_url)
+                        # if txt_response.status_code != 200:
+                        #     print(f"Failed to get {txt_url}")
+                        #     continue
 
-    return chord_shapes
+                        # Process the text file content into ChordShape objects
+                        file.write(filename_without_ext + ":\n")
+                        process_chord_shapes(txt_response.text, file)
+                        
+                        count += 1
 
-def process_chord_shape(txt_content):
-    # Process the text content and return a ChordShape object
-    # This will depend on the specific format of the text files
-    pass
+def process_chord_shapes(txt_content, file):
+    lines = txt_content.split('\n')
 
-# Example usage
+    for line in lines:
+        if line and all(s.isdigit() or s == 'x' for s in line.split()):
+            coords = [0 if s == 'x' else int(s) + 1 for s in line.split()]
+            curr = ChordShape(coords, 0)
+            coords = [curr.root] + coords
+            file.write(str(coords) + "\n")             
+    
 url = 'https://www.hakwright.co.uk/guitarchords/A_chords.html'
-chord_shapes = scrape_chord_shapes(url)
