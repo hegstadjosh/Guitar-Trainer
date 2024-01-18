@@ -65,8 +65,9 @@ def chord_viewer():
     print("--------------------Chord Viewer---------------------")
     print("This method accepts input of the types 'name', 'std', 'int', and 'fret'")
     print("  i.e. a chord's name, standard or integer spelling, or 7-digit coordinates \n  and returns the chord attributes (And diagram if 'fret' is used)")
-    print("  Example: Chord(name='Diminished 7th', standard_spelling='1 b3 b5 bb7', integer_spelling='(0, 3, 6, 9)')")
     print()
+    print("  Example: Chord(name='Diminished 7th', standard_spelling='1 b3 b5 bb7', integer_spelling='(0, 3, 6, 9)')")
+    print("           could also be entered with the coordinates '3001212'")
     while True: 
         user_input = input("Enter a string in the format <Input Type> <Input>: ")
         if user_input == "q":

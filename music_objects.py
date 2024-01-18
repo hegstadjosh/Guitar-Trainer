@@ -54,16 +54,15 @@ class Chord:
             # Convert from standard to integer
             self.integer_spelling = music_data.convert_spelling(standard_spelling, 0)
             self.standard_spelling = standard_spelling
-        elif standard_spelling and integer_spelling:
-            self.standard_spelling = standard_spelling
-            self.integer_spelling = integer_spelling
         elif name and name in music_data.chord_map:
             self.standard_spelling = music_data.chord_map[name][0]
             self.integer_spelling = music_data.chord_map[name][1]
-        else:
+        
+        if not self.integer_spelling:
             raise ValueError("At least one of standard_spelling or integer_spelling must be provided")
         
-        if not name and integer_spelling in music_data.chord_map_invert:
+        # print(music_data.chord_map_invert[])
+        if not self.name and self.integer_spelling in music_data.chord_map_invert:
             self.name = music_data.chord_map_invert[self.integer_spelling][0]
 
         
