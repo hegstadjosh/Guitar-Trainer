@@ -1,6 +1,7 @@
 import pprint
 import random
 import music_objects as mo
+import music_data as md
 '''
 File that demonstrates the functionality of the music_objects.py file in conjunction 
 with the data in music_data.py.
@@ -94,6 +95,17 @@ def chord_viewer():
                 else:
                     print("Invalid input. Please try again.")
                     continue
+
+                #Checks if there's a stored chord shape for the given chord and prints it
+                if input_type != "fret":
+                    indices = list(range(len(mo.chord_shapes)))
+                    random.shuffle(indices)
+                    for i in indices:
+                        shape = (mo.chord_shapes[i])
+                        if shape.chord.integer_spelling == chord.integer_spelling:
+                            shape.print_diagram()
+                            break
+
                 print(chord)
                 print()
 
@@ -117,6 +129,7 @@ def scale_viewer():
         
         if user_input.replace(" ", "").isdigit():
             user_input = [int(digit) for digit in user_input.split()]
+            user_input = [x - min(user_input) for x in user_input]
             scale = mo.Scale(None, user_input)
         else:
             scale = mo.Scale(user_input)

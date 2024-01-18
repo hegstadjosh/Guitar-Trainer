@@ -104,3 +104,17 @@ def process_chord_shapes(txt_content, file):
             file.write(str(coords) + "\n")             
     
 url = 'https://www.hakwright.co.uk/guitarchords/A_chords.html'
+
+file = 'C:\\Users\\socce\\Desktop\\Guitar Project (Python)\\old_chord_assignments.txt'
+with open(file, 'r') as file:
+    lines = file.readlines()
+    chords = []
+    for line in lines:
+        if '[' in line:
+            parts = line.split('[')
+            parts = parts[1].split(']')
+            parts = parts[0].split(',')
+            parts = [int(part.strip()) for part in parts]
+
+            print("ChordShape(", parts, "),\n")
+

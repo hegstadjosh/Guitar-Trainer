@@ -10,11 +10,12 @@ File Name: music_objects.py
 Description: This file contains classes and functions for representing musical scales and chords, 
              and generating diagrams for them on a guitar fretboard.
 Author: Joshua Hegstad
-Date: 01/17/2024
-Version: 1.2
+Date: 01/18/2024
+Version: 1.2.1
 """
 
 base_notes =  [7, 12, 17, 22, 26, 31] #Standard tuning EADGBE in integer notation (A = 0, G# = 11)
+
 
 # Define the Chord class and a function to create instances for each chord from the file
 class Chord:
@@ -26,8 +27,6 @@ class Chord:
         standard_spelling (str): The standard notation of the chord.
         integer_spelling (set of int): The integer representation of the chord.
     """
-        
-    
 
     def __init__(self, name = None, standard_spelling = None, integer_spelling = None):
         """
@@ -41,6 +40,7 @@ class Chord:
         self.name = name
         self.integer_spelling = integer_spelling
         self.standard_spelling = standard_spelling
+        self.shape = None
         if not standard_spelling and integer_spelling:
             # Convert from integer to standard
             if isinstance(integer_spelling, str):
@@ -64,7 +64,6 @@ class Chord:
         # print(music_data.chord_map_invert[])
         if not self.name and self.integer_spelling in music_data.chord_map_invert:
             self.name = music_data.chord_map_invert[self.integer_spelling][0]
-
         
     def get_name(self):
         return self.name
@@ -453,3 +452,8 @@ all_chords = []
 for chord_name, chord_data in music_data.chord_map.items():
     chord = Chord(chord_name, chord_data[0], chord_data[1])
     all_chords.append(chord)
+
+chord_shapes = []
+for coords in music_data.chord_shapes:
+    shape = ChordShape(coords)
+    chord_shapes.append(shape)
